@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Для самой лучшей подруги! ✨</title>
+    <style>
+        :root {
+            --bg-color: #fcefe9;
+            --card-color: #ffffff;
+            --accent-color: #ff8b94;
+            --text-color: #4a4a4a;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 500px;
+            width: 100%;
+            background: var(--card-color);
+            padding: 30px;
+            border-radius: 20px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.05);
+            text-align: center;
+            box-sizing: border-box;
+        }
+
+        h1 {
+            color: var(--accent-color);
+            font-size: 24px;
+            margin-bottom: 10px;
+        }
+
+        p {
+            font-size: 16px;
+            line-height: 1.5;
+        }
+
+        .btn-group {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            margin: 25px 0;
+        }
+
+        button {
+            background-color: var(--accent-color);
+            color: white;
+            border: none;
+            padding: 12px 20px;
+            font-size: 16px;
+            border-radius: 25px;
+            cursor: pointer;
+            transition: transform 0.2s, background-color 0.2s;
+            font-weight: bold;
+        }
+
+        button:hover {
+            background-color: #ff737d;
+            transform: scale(1.03);
+        }
+
+        button:active {
+            transform: scale(0.98);
+        }
+
+        #output-box {
+            min-height: 60px;
+            padding: 15px;
+            border: 2px dashed #ffe0e2;
+            border-radius: 15px;
+            margin-top: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 500;
+            font-style: italic;
+        }
+
+        /* Мини-игра */
+        .game-zone {
+            margin-top: 30px;
+            border-top: 1px solid #eee;
+            padding-top: 20px;
+        }
+
+        .sad-emoji {
+            font-size: 40px;
+            cursor: pointer;
+            display: inline-block;
+            transition: transform 0.1s;
+            user-select: none;
+        }
+
+        .sad-emoji:active {
+            transform: scale(0.5);
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h1>Эй, улыбнись! Нажми сюда 👇</h1>
+        <p>Этот сайт создан специально для того, чтобы напомнить тебе, какая ты замечательная, и прогнать всю грусть.</p>
+
+        <div class="btn-group">
+            <button onclick="getCompliment()">✨ Получить порцию поддержки</button>
+            <button onclick="getHug()">☕ Виртуальное объятие</button>
+        </div>
+
+        <div id="output-box">Нажми на любую кнопку выше... 😉</div>
+
+        <div class="game-zone">
+            <h3>Уничтожитель грусти</h3>
+            <p>Кликни по грустному смайлику, чтобы превратить его в радость!</p>
+            <div id="emoji" class="sad-emoji" onclick="popSadness()">😢</div>
+        </div>
+    </div>
+
+    <script>
+        const compliments = [
+            "Ты невероятно сильная, и ты справишься со всем! 💪",
+            "Помни, что после самого сильного дождя всегда выходит солнце ☀️",
+            "Твоя улыбка делает этот мир чуточку лучше. Пожалуйста, не грусти! ✨",
+            "Ты особенная, и я очень рад(а), что ты есть в моей жизни 💛",
+            "Все твои трудности временны, а твоя суперсила — вечна!",
+            "Если тебе нужно поговорить или помолчать вместе — я рядом. всегда 🤝",
+            "Прямо сейчас кто-то (как минимум я!) думает о тебе с теплом."
+        ];
+
+        const hugs = [
+            "🤗 *Крепко-крепко обнимаю тебя через экран* Всё обязательно будет хорошо!",
+            "☕ Держи виртуальную чашку горячего какао с маршмеллоу. Укутывайся в плед!",
+            "🦊 Держи мысленную пушистую лисичку, она пришла тебя поддержать.",
+            "🌸 *Передаю тебе огромный букет твоего любимого настроения*"
+        ];
+
+        function getCompliment() {
+            const randomIndex = Math.floor(Math.random() * compliments.length);
+            document.getElementById('output-box').innerText = compliments[randomIndex];
+        }
+
+        function getHug() {
+            const randomIndex = Math.floor(Math.random() * hugs.length);
+            document.getElementById('output-box').innerText = hugs[randomIndex];
+        }
+
+        function popSadness() {
+            const emojiDiv = document.getElementById('emoji');
+            if (emojiDiv.innerText === "😢") {
+                emojiDiv.innerText = "💥";
+                setTimeout(() => {
+                    emojiDiv.innerText = "🥰";
+                    emojiDiv.style.transform = "scale(1.3)";
+                }, 300);
+            } else {
+                // Возвращаем обратно для повторной игры
+                emojiDiv.innerText = "😢";
+                emojiDiv.style.transform = "scale(1)";
+            }
+        }
+    </script>
+</body>
+</html>
