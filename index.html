@@ -3,12 +3,14 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Для самой лучшей подруги! ✨</title>
+    <title>Секретный бункер хорошего настроения! ✨</title>
     <style>
         :root {
-            --bg-color: #fcefe9;
+            --bg-color: #f7f1eb;
             --card-color: #ffffff;
-            --accent-color: #ff8b94;
+            --accent-color: #ff7b91;
+            --accent-hover: #ff526f;
+            --secondary-color: #7bc9ff;
             --text-color: #4a4a4a;
         }
 
@@ -17,159 +19,200 @@
             background-color: var(--bg-color);
             color: var(--text-color);
             margin: 0;
-            padding: 20px;
+            padding: 15px;
             display: flex;
             flex-direction: column;
             align-items: center;
             justify-content: center;
             min-height: 100vh;
+            box-sizing: border-box;
         }
 
         .container {
-            max-width: 500px;
+            max-width: 550px;
             width: 100%;
             background: var(--card-color);
-            padding: 30px;
-            border-radius: 20px;
-            box-shadow: 0 10px 25px rgba(0,0,0,0.05);
+            padding: 30px 25px;
+            border-radius: 24px;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.06);
             text-align: center;
             box-sizing: border-box;
         }
 
         h1 {
             color: var(--accent-color);
-            font-size: 24px;
-            margin-bottom: 10px;
+            font-size: 26px;
+            margin-bottom: 5px;
+            margin-top: 0;
         }
 
-        p {
-            font-size: 16px;
-            line-height: 1.5;
+        .subtitle {
+            font-size: 15px;
+            color: #777;
+            margin-bottom: 25px;
         }
 
-        .btn-group {
-            display: flex;
-            flex-direction: column;
-            gap: 10px;
-            margin: 25px 0;
+        .grid-buttons {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 12px;
+            margin-bottom: 20px;
+        }
+
+        @media (max-width: 400px) {
+            .grid-buttons {
+                grid-template-columns: 1fr;
+            }
         }
 
         button {
             background-color: var(--accent-color);
             color: white;
             border: none;
-            padding: 12px 20px;
-            font-size: 16px;
-            border-radius: 25px;
+            padding: 14px 15px;
+            font-size: 14px;
+            border-radius: 16px;
             cursor: pointer;
-            transition: transform 0.2s, background-color 0.2s;
+            transition: all 0.2s ease;
             font-weight: bold;
-        }
-
-        button:hover {
-            background-color: #ff737d;
-            transform: scale(1.03);
-        }
-
-        button:active {
-            transform: scale(0.98);
-        }
-
-        #output-box {
-            min-height: 60px;
-            padding: 15px;
-            border: 2px dashed #ffe0e2;
-            border-radius: 15px;
-            margin-top: 15px;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-weight: 500;
-            font-style: italic;
+            gap: 8px;
+            box-shadow: 0 4px 10px rgba(255, 123, 145, 0.2);
         }
 
-        /* Мини-игра */
-        .game-zone {
-            margin-top: 30px;
-            border-top: 1px solid #eee;
+        button.blue-btn {
+            background-color: var(--secondary-color);
+            box-shadow: 0 4px 10px rgba(123, 201, 255, 0.2);
+        }
+
+        button:hover {
+            transform: translateY(-2px);
+            opacity: 0.95;
+        }
+
+        button:active {
+            transform: translateY(1px);
+        }
+
+        #output-box {
+            min-height: 70px;
+            padding: 20px;
+            border: 2px dashed #ffd3da;
+            background-color: #fffafb;
+            border-radius: 18px;
+            margin: 20px 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            font-weight: 500;
+            font-size: 16px;
+            line-height: 1.5;
+        }
+
+        .animal-pic {
+            max-width: 100%;
+            max-height: 200px;
+            border-radius: 12px;
+            margin-top: 10px;
+            display: none;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+
+        /* Зона интерактива */
+        .interactive-zone {
+            margin-top: 25px;
+            border-top: 2px dashed #f0f0f0;
             padding-top: 20px;
         }
 
-        .sad-emoji {
-            font-size: 40px;
-            cursor: pointer;
-            display: inline-block;
-            transition: transform 0.1s;
-            user-select: none;
+        .game-title {
+            font-size: 16px;
+            font-weight: bold;
+            margin-bottom: 5px;
         }
 
-        .sad-emoji:active {
-            transform: scale(0.5);
+        .sad-emoji {
+            font-size: 50px;
+            cursor: pointer;
+            display: inline-block;
+            transition: transform 0.1s ease;
+            user-select: none;
+            margin: 10px 0;
+        }
+
+        .sad-emoji:hover {
+            transform: scale(1.1);
+        }
+
+        .counter-text {
+            font-size: 13px;
+            color: #888;
+            margin-top: 5px;
+        }
+        
+        #secret-message {
+            font-size: 14px;
+            color: var(--accent-color);
+            font-weight: bold;
+            height: 18px;
+            margin-top: 5px;
         }
     </style>
 </head>
 <body>
 
     <div class="container">
-        <h1>Эй, улыбнись! Нажми сюда 👇</h1>
-        <p>Этот сайт создан специально для того, чтобы напомнить тебе, какая ты замечательная, и прогнать всю грусть.</p>
+        <h1>Эй, прекрасная леди! 🌸</h1>
+        <div class="subtitle">Этот сайт создан повышать тебе настроение. Тыкай на любые кнопки!</div>
 
-        <div class="btn-group">
-            <button onclick="getCompliment()">✨ Получить порцию поддержки</button>
-            <button onclick="getHug()">☕ Виртуальное объятие</button>
+        <div class="grid-buttons">
+            <button onclick="getCompliment()">✨ Поддержка</button>
+            <button onclick="getHug()">☕ Обнимашка</button>
+            <button class="blue-btn" onclick="getPrediction()">🥠 Предсказание</button>
+            <button class="blue-btn" onclick="getIdea()">🎉 Идея на вечер</button>
+        </div>
+        
+        <button style="width: 100%; background: #64dfdf; color: #114e4e; box-shadow: none;" onclick="getAnimal()">🐱 Призвать пушистого антидепрессанта</button>
+
+        <div id="output-box">
+            <span id="output-text">Нажми на кнопочки выше, чтобы запустить магию... 😉</span>
+            <img id="animal-img" class="animal-pic" src="" alt="Милое животное">
         </div>
 
-        <div id="output-box">Нажми на любую кнопку выше... 😉</div>
-
-        <div class="game-zone">
-            <h3>Уничтожитель грусти</h3>
-            <p>Кликни по грустному смайлику, чтобы превратить его в радость!</p>
+        <div class="interactive-zone">
+            <div class="game-title">🔨 Уничтожитель грусти 3000</div>
+            <div style="font-size: 13px; color: #666;">Кликай на смайлик, чтобы прогнать тоску!</div>
             <div id="emoji" class="sad-emoji" onclick="popSadness()">😢</div>
+            <div id="secret-message"></div>
+            <div class="counter-text">Грусти уничтожено: <span id="click-count" style="font-weight:bold; color: var(--accent-color);">0</span> раз(а)</div>
         </div>
     </div>
 
     <script>
         const compliments = [
-            "Ты невероятно сильная, и ты справишься со всем! 💪",
+            "Ты невероятно сильная, и ты точно справишься со всем! 💪",
             "Помни, что после самого сильного дождя всегда выходит солнце ☀️",
-            "Твоя улыбка делает этот мир чуточку лучше. Пожалуйста, не грусти! ✨",
-            "Ты особенная, и я очень рад(а), что ты есть в моей жизни 💛",
+            "Твоя улыбка делает этот мир чуточку лучше. Пожалуйста, улыбнись! ✨",
+            "Ты особенная, и я очень рад(а), что мы дружим 💛",
             "Все твои трудности временны, а твоя суперсила — вечна!",
-            "Если тебе нужно поговорить или помолчать вместе — я рядом. всегда 🤝",
-            "Прямо сейчас кто-то (как минимум я!) думает о тебе с теплом."
+            "Если тебе нужно поговорить или помолчать вместе — я всегда рядом 🤝",
+            "Прямо сейчас я думаю о тебе с теплом и посылаю лучи добра!"
         ];
 
         const hugs = [
-            "🤗 *Крепко-крепко обнимаю тебя через экран* Всё обязательно будет хорошо!",
+            "🤗 *Крепко-крепко обнимаю тебя через экран* Всё обязательно наладится!",
             "☕ Держи виртуальную чашку горячего какао с маршмеллоу. Укутывайся в плед!",
-            "🦊 Держи мысленную пушистую лисичку, она пришла тебя поддержать.",
-            "🌸 *Передаю тебе огромный букет твоего любимого настроения*"
+            "🦊 Держи мысленную пушистую лисичку, она пришла тебя согреть.",
+            "🌸 *Передаю тебе огромный охапку твоих любимых цветов и хорошего настроения*"
         ];
 
-        function getCompliment() {
-            const randomIndex = Math.floor(Math.random() * compliments.length);
-            document.getElementById('output-box').innerText = compliments[randomIndex];
-        }
-
-        function getHug() {
-            const randomIndex = Math.floor(Math.random() * hugs.length);
-            document.getElementById('output-box').innerText = hugs[randomIndex];
-        }
-
-        function popSadness() {
-            const emojiDiv = document.getElementById('emoji');
-            if (emojiDiv.innerText === "😢") {
-                emojiDiv.innerText = "💥";
-                setTimeout(() => {
-                    emojiDiv.innerText = "🥰";
-                    emojiDiv.style.transform = "scale(1.3)";
-                }, 300);
-            } else {
-                // Возвращаем обратно для повторной игры
-                emojiDiv.innerText = "😢";
-                emojiDiv.style.transform = "scale(1)";
-            }
-        }
-    </script>
-</body>
-</html>
+        const predictions = [
+            "🔮 Скоро случится кое-что очень приятное, что заставит тебя визжать от радости!",
+            "🔮 Звезды говорят, что сегодня идеальный день, чтобы забить на проблемы и съесть вкусняшку.",
+            "🔮 В ближайшие дни ты получишь очень классное сообщение или сюрприз. Жди!",
+            "🔮 Твоё заветное желание уже в пути, просто дай ему немного времени 🤍",
+            "🔮 Твоя продуктивность скоро взлетит, но сегодня разрешено лениться на все 100%!"
+        ];
