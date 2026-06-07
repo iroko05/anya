@@ -121,7 +121,6 @@
             box-shadow: 0 5px 15px rgba(0,0,0,0.1);
         }
 
-        /* Зона интерактива */
         .interactive-zone {
             margin-top: 25px;
             border-top: 2px dashed #f0f0f0;
@@ -206,7 +205,7 @@
             "🤗 *Крепко-крепко обнимаю тебя через экран* Всё обязательно наладится!",
             "☕ Держи виртуальную чашку горячего какао с маршмеллоу. Укутывайся в плед!",
             "🦊 Держи мысленную пушистую лисичку, она пришла тебя согреть.",
-            "🌸 *Передаю тебе огромный охапку твоих любимых цветов и хорошего настроения*"
+            "🌸 *Передаю тебе огромную охапку твоих любимых цветов и хорошего настроения*"
         ];
 
         const predictions = [
@@ -216,3 +215,78 @@
             "🔮 Твоё заветное желание уже в пути, просто дай ему немного времени 🤍",
             "🔮 Твоя продуктивность скоро взлетит, но сегодня разрешено лениться на все 100%!"
         ];
+
+        const ideas = [
+            "🎬 Включить уютную комедию или мультик из детства (например, Рататуй или Шрека).",
+            "🎧 Надеть наушники, включить любимый трек на максимум и устроить дикие танцы посреди комнаты.",
+            "🛁 Сделать супер-расслабряющую ванну с пеной или просто заварить самый вкусный чай.",
+            "🍰 Заказать себе что-нибудь безумно вкусное прямо сейчас. Ты это заслужила!",
+            "🛌 Надеть самую мягкую пижаму и лечь спать пораньше, завернувшись в кокон."
+        ];
+
+        const animalImages = [
+            "https://images.unsplash.com/photo-1514888286974-6c03e2ca1dba?w=500&q=80", 
+            "https://images.unsplash.com/photo-1543466835-00a7907e9de1?w=500&q=80", 
+            "https://images.unsplash.com/photo-1507679799987-c73779587ccf?w=500&q=80", 
+            "https://images.unsplash.com/photo-1501820488136-72669a482d14?w=500&q=80", 
+            "https://images.unsplash.com/photo-1474511320723-9a56873867b5?w=500&q=80", 
+            "https://images.unsplash.com/photo-1574158622643-69d34d72650a?w=500&q=80"  
+        ];
+
+        function clearBox() {
+            document.getElementById('animal-img').style.display = 'none';
+        }
+
+        function getCompliment() {
+            clearBox();
+            const randomIndex = Math.floor(Math.random() * compliments.length);
+            document.getElementById('output-text').innerText = compliments[randomIndex];
+        }
+
+        function getHug() {
+            clearBox();
+            const randomIndex = Math.floor(Math.random() * hugs.length);
+            document.getElementById('output-text').innerText = hugs[randomIndex];
+        }
+
+        function getPrediction() {
+            clearBox();
+            const randomIndex = Math.floor(Math.random() * predictions.length);
+            document.getElementById('output-text').innerText = predictions[randomIndex];
+        }
+
+        function getIdea() {
+            clearBox();
+            const randomIndex = Math.floor(Math.random() * ideas.length);
+            document.getElementById('output-text').innerText = "💡 Идея: " + ideas[randomIndex];
+        }
+
+        function getAnimal() {
+            const textElement = document.getElementById('output-text');
+            const imgElement = document.getElementById('animal-img');
+            
+            textElement.innerText = "Держи пушистика для улыбки! 👇";
+            
+            const randomIndex = Math.floor(Math.random() * animalImages.length);
+            imgElement.src = animalImages[randomIndex];
+            imgElement.style.display = 'block';
+        }
+
+        let count = 0;
+        function popSadness() {
+            const emojiDiv = document.getElementById('emoji');
+            const countSpan = document.getElementById('click-count');
+            const secretMsg = document.getElementById('secret-message');
+            
+            count++;
+            countSpan.innerText = count;
+
+            if (emojiDiv.innerText === "😢" || emojiDiv.innerText === "🥰") {
+                emojiDiv.innerText = "💥";
+                
+                if (count === 5) {
+                    secretMsg.innerText = "Разгоняем тучи! ☁️";
+                } else if (count === 10) {
+                    secretMsg.innerText = "Уровень грусти снижен наполовину! 🔥";
+                } else if (count === 15) {
+                    secretMsg.innerText = "Ты полностью уничтожила тоску! Ро
